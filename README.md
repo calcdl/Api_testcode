@@ -1,7 +1,6 @@
 ## 环境
 
 > 环境：httpclient+jsonpath+testng+ExtentReport(jdk8)  
-> demo中的用例以百度的api store为例（具体查看：[百度api商城](http://apistore.baidu.com/)）
 
 ## 运行
 1. IDE工具直接执行testng.xml(以testng形式运行)即可（ide工具需要先装好testng插件）。
@@ -25,7 +24,7 @@
 项目名称，会在html报告中使用
 ```
 <root>
-	<rootUrl>http://apis.baidu.com</rootUrl>
+	<rootUrl>http://www.baidu.com</rootUrl>
 	<headers>
 		<!-- 换成自己实际的值 -->
 		<header name="apikey" value="123456"></header>
@@ -44,6 +43,8 @@
 标记为‘Y’时，该行数据会被读取执行。
 - description：
 该用例描述，在报告中提现。
+- header：
+header信息头（为空上传api-config默认配置，body的内容暂只支持json）
 - method：
 该api测试用例的请求方法（暂只支持get,post）。上传文件时请填写为upload
 - url：
@@ -81,7 +82,13 @@ username=$.username;id=$.userId
 {"key":"apikey","userId":"${id}","username":"${username}"}
 //实际执行时会替换为：
 {"key":"123456","userId":"1000","username":"username"}
+
+//如果返回值为数据格式
+[{"name"="a"}{"age"="b"}]
+id=$.data[0].name ======>>>> id = a
 ```
+
+
 
 ## 函数助手
 > 测试用例excel表中可以使用‘__funcName(args)’占位符，在执行过程中如果判断含有该占位符，且funcName存在，则会执行相应的函数后进行替换。先支持函数如下：

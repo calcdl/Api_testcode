@@ -50,7 +50,7 @@
 - header：
 header信息头（为空上传api-config默认配置，body的内容暂只支持json）
 - method：
-该api测试用例的请求方法（暂只支持get,post）。上传文件时请填写为upload
+该api测试用例的请求方法（暂只支持get,post,delete,put）。上传文件时请填写为upload
 - url：
 该api测试用例的请求路径。
 - param：

@@ -374,7 +374,6 @@ public class ApiTest extends TestBase {
     }
 
 
-    // WEBHOOK_TOKEN = "https://oapi.dingtalk.com/robot/send?access_token=db6c5c96bad1507a4215afa0dfbd60b234975700871c6a357e43b8f20e495ed2";
     //通知钉钉消息
     @AfterClass
     public void result_notification() throws Exception {

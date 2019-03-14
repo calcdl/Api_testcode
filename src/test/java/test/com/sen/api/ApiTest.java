@@ -45,7 +45,12 @@ public class ApiTest extends TestBase {
     /**
      * 钉钉通知地址
      */
-    private static String Webhook_Token;
+    private static String webhook_Token;
+
+    /**
+     * 测试报告地址
+     */
+    private static String messageUrl;
 
     /**
      * 跟路径是否以‘/’结尾
@@ -87,7 +92,8 @@ public class ApiTest extends TestBase {
         apiConfig = new ApiConfig(configFilePath);
         // 获取基础数据
         rootUrl = apiConfig.getRootUrl();
-        Webhook_Token = apiConfig.getWebhook_Token();
+        webhook_Token = apiConfig.getWebhook_Token();
+        messageUrl =apiConfig.getMessageUrl();
         rooUrlEndWithSlash = rootUrl.endsWith("/");
 
         // 读取 param，并将值保存到公共数据map
@@ -370,16 +376,16 @@ public class ApiTest extends TestBase {
 
     // WEBHOOK_TOKEN = "https://oapi.dingtalk.com/robot/send?access_token=db6c5c96bad1507a4215afa0dfbd60b234975700871c6a357e43b8f20e495ed2";
     //通知钉钉消息
-    //@AfterClass
+    @AfterClass
     public void result_notification() throws Exception {
         HttpClient httpclient = HttpClients.createDefault();
 
-        HttpPost httppost = new HttpPost(Webhook_Token);
+        HttpPost httppost = new HttpPost(webhook_Token);
         httppost.addHeader("Content-Type", "application/json; charset=utf-8");
 
 
         String textMsg = "{ \"msgtype\": \"text\", \"text\": {\"content\": \"我就是我, 是不一样的烟火\"}}";
-        String textMsg2 = "{\"msgtype\": \"link\",\"link\": {\"text\":\"运营商管理后台API接口用例\",\"title\": \"API自动化测试结果\",\"picUrl\": \"\",\"messageUrl\": \"http://192.168.10.240:8080/jenkins/job/allureTest/allure/\"}}";
+        String textMsg2 = "{\"msgtype\": \"link\",\"link\": {\"text\":\"运营商管理后台API接口用例\",\"title\": \"API自动化测试结果\",\"picUrl\": \"\",\"messageUrl\": \""+messageUrl+"\"}}";
         StringEntity se = new StringEntity(textMsg2, "utf-8");
         httppost.setEntity(se);
 

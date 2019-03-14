@@ -1,10 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <root>
     <rootUrl>http://47.111.62.215:6003</rootUrl>
-    <WEBHOOK_TOKEN>
+    <webhook_Token>
         <!-- 钉钉通知地址 -->
         https://oapi.dingtalk.com/robot/send?access_token=db6c5c96bad1507a4215afa0dfbd60b234975700871c6a357e43b8f20e495ed2
-    </WEBHOOK_TOKEN>
+    </webhook_Token>
+    <messageUrl>
+        <!-- 结果报告地址 -->
+        <!--http://192.168.10.240:8080/jenkins/job/allureTest/allure/-->
+        http://47.96.7.205:8080/jenkins/job/allureTest/allure/
+    </messageUrl>
     <headers>
         <!-- 配置为自己的参数 -->
         <header name="Content-Type" value="application/json"></header>

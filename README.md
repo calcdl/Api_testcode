@@ -16,6 +16,10 @@
 
 - rootUrl: 
 必须的配置，api的根路径，在调用api时用于拼接，配置后，会在自动添加到用例中的url的前缀中。  
+- webhook_Token:
+设置钉钉通知地址，发送结果报告
+- messageUrl：
+测试用例测试结果报告地址URL
 - headers: 
 非必须配置，配置后在调用api时会将对应的name:value值设置到所有请求的请求头中header-name:header-value。
 - params：

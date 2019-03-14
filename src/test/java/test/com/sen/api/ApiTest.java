@@ -373,7 +373,7 @@ public class ApiTest extends TestBase {
 
 
         String textMsg = "{ \"msgtype\": \"text\", \"text\": {\"content\": \"我就是我, 是不一样的烟火\"}}";
-        String textMsg2 = "{\"msgtype\": \"link\",\"link\": {\"text\":\"测试内容\",\"title\": \"API自动化测试结果用例\",\"picUrl\": \"\",\"messageUrl\": \"http://localhost:8080/index.html/\"}}";
+        String textMsg2 = "{\"msgtype\": \"link\",\"link\": {\"text\":\"运营商管理后台API接口用例\",\"title\": \"API自动化测试结果\",\"picUrl\": \"\",\"messageUrl\": \"http://192.168.10.240:8080/jenkins/job/allureTest/allure/\"}}";
         StringEntity se = new StringEntity(textMsg2, "utf-8");
         httppost.setEntity(se);
 

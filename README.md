@@ -57,7 +57,7 @@ header信息头（为空上传api-config默认配置，body的内容暂只支持
 使用jsonPath对response的数据进行提取存储。
 
 - 说明：
-1. 若配置文件(api-config.xml)中rootUrl为"http://apis.baidu.com" ，url的值为：“/apistore/aqiservice/citylist”，框架执行的时候会根据配置文件中rootUrl进行自动拼接为：http://apis.baidu.com/apistore/aqiservice/citylist 。
+1. 若配置文件(api-config.xml)中rootUrl为"http://www.baidu.com" ，url的值为：“/apistore/aqiservice/citylist”，框架执行的时候会根据配置文件中rootUrl进行自动拼接为：http://www.baidu.com/apistore/aqiservice/citylist 。
 若填写url填写为http作为前缀的值如：“http://www.baidu.com/s?w=test” 将不会进行拼接。
 
 2. 若verify填写值为：“$.errorCode=0;$.errorMessage=success”,则会校验返回值中$.errorCode的值为0，$.errorMessage的值为success，只要有一个校验错误，后面的其他校验项将停止校验。

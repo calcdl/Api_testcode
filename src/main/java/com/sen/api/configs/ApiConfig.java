@@ -19,6 +19,7 @@ public class ApiConfig {
 		Element rootElement = document.getRootElement();
 		
 		rootUrl = rootElement.element("rootUrl").getTextTrim();
+		Webhook_Token = rootElement.element("WEBHOOK_TOKEN").getTextTrim();
 		@SuppressWarnings("unchecked")
 		List<Element> paramElements = rootElement.element("params").elements(
 				"param");
@@ -39,7 +40,12 @@ public class ApiConfig {
 		}
 	}
 	private String rootUrl;
-	
+
+	public String getWebhook_Token() {
+		return Webhook_Token;
+	}
+
+	private String Webhook_Token;
 	
 	private Map<String,String> params = new HashMap<String, String>();
 	

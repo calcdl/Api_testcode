@@ -43,6 +43,11 @@ public class ApiTest extends TestBase {
     private static String rootUrl;
 
     /**
+     * 钉钉通知地址
+     */
+    private static String Webhook_Token;
+
+    /**
      * 跟路径是否以‘/’结尾
      */
     private static boolean rooUrlEndWithSlash = false;
@@ -82,6 +87,7 @@ public class ApiTest extends TestBase {
         apiConfig = new ApiConfig(configFilePath);
         // 获取基础数据
         rootUrl = apiConfig.getRootUrl();
+        Webhook_Token = apiConfig.getWebhook_Token();
         rooUrlEndWithSlash = rootUrl.endsWith("/");
 
         // 读取 param，并将值保存到公共数据map
@@ -146,7 +152,7 @@ public class ApiTest extends TestBase {
         String apiParam = buildRequestParam(apiDataBean);
         String header1 = buildRequesthead(apiDataBean);
         //把header转json->map格式
-        Map<String, String> header = (Map)JSONObject.parse(header1);
+        Map<String, String> header = (Map) JSONObject.parse(header1);
         // 封装请求方法
         HttpUriRequest method = parseHttpRequest(header, apiDataBean.getUrl(),
                 apiDataBean.getMethod(), apiParam);
@@ -249,7 +255,7 @@ public class ApiTest extends TestBase {
                 System.err.println("hearder not is null");
                 //postMethod.setHeader("Content-Type", "application/json");
                 for (Map.Entry<String, String> entry : header.entrySet()) {
-                    System.err.println("header type---------:"+entry.getKey() + ":" + entry.getValue());
+                    System.err.println("header type---------:" + entry.getKey() + ":" + entry.getValue());
                     postMethod.addHeader(entry.getKey(), entry.getValue());
                 }
             }
@@ -362,13 +368,13 @@ public class ApiTest extends TestBase {
     }
 
 
-    public static String WEBHOOK_TOKEN = "https://oapi.dingtalk.com/robot/send?access_token=db6c5c96bad1507a4215afa0dfbd60b234975700871c6a357e43b8f20e495ed2";
-
+    // WEBHOOK_TOKEN = "https://oapi.dingtalk.com/robot/send?access_token=db6c5c96bad1507a4215afa0dfbd60b234975700871c6a357e43b8f20e495ed2";
+    //通知钉钉消息
     //@AfterClass
     public void result_notification() throws Exception {
         HttpClient httpclient = HttpClients.createDefault();
 
-        HttpPost httppost = new HttpPost(WEBHOOK_TOKEN);
+        HttpPost httppost = new HttpPost(Webhook_Token);
         httppost.addHeader("Content-Type", "application/json; charset=utf-8");
 
 

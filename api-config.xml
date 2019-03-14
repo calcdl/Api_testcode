@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <root>
     <rootUrl>http://47.111.62.215:6003</rootUrl>
+    <WEBHOOK_TOKEN>
+        <!-- 钉钉通知地址 -->
+        https://oapi.dingtalk.com/robot/send?access_token=db6c5c96bad1507a4215afa0dfbd60b234975700871c6a357e43b8f20e495ed2
+    </WEBHOOK_TOKEN>
     <headers>
         <!-- 配置为自己的参数 -->
         <header name="Content-Type" value="application/json"></header>
     </headers>
     <params>
-    	<param name="test" value="value"></param>
+        <param name="test" value="value"></param>
     </params>
     <project_name>接口自动化测试报告demo</project_name>
 </root>

@@ -8,7 +8,7 @@
     <messageUrl>
         <!-- 结果报告地址 -->
         <!--http://192.168.10.240:8080/jenkins/job/allureTest/allure/-->
-        http://47.96.7.205:8080/jenkins/job/ApiTestCode/
+        http://47.96.7.205:8080/jenkins/job/ApiTestCode/allure/
     </messageUrl>
     <headers>
         <!-- 配置为自己的参数 -->

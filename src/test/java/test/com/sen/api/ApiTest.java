@@ -7,6 +7,7 @@ import com.sen.api.configs.ApiConfig;
 import com.sen.api.listeners.AutoTestListener;
 import com.sen.api.listeners.RetryListener;
 import com.sen.api.utils.*;
+import io.qameta.allure.Step;
 import org.apache.http.Header;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -93,7 +94,7 @@ public class ApiTest extends TestBase {
         // 获取基础数据
         rootUrl = apiConfig.getRootUrl();
         webhook_Token = apiConfig.getWebhook_Token();
-        messageUrl =apiConfig.getMessageUrl();
+        messageUrl = apiConfig.getMessageUrl();
         rooUrlEndWithSlash = rootUrl.endsWith("/");
 
         // 读取 param，并将值保存到公共数据map
@@ -163,6 +164,7 @@ public class ApiTest extends TestBase {
         HttpUriRequest method = parseHttpRequest(header, apiDataBean.getUrl(),
                 apiDataBean.getMethod(), apiParam);
         String responseData;
+
         try {
             // 执行
             HttpResponse response = client.execute(method);
@@ -207,6 +209,8 @@ public class ApiTest extends TestBase {
         }
         // 输出返回数据log
         ReportUtil.log("resp:" + responseData);
+        respondBody("header:" + header + "\r\nmethod:" + apiDataBean.getMethod() + "\r\nurl:" + apiDataBean.getUrl() + "\r\nparam:" + apiParam.replace("\r\n", "").replace("\n", ""));
+        respondBody("responseData:" + responseData);
         // 验证预期信息
         verifyResult(responseData, apiDataBean.getVerify(),
                 apiDataBean.isContains());
@@ -243,7 +247,6 @@ public class ApiTest extends TestBase {
     private HttpUriRequest parseHttpRequest(Map<String, String> header, String url, String method, String param) throws UnsupportedEncodingException {
         // 处理url
         url = parseUrl(url);
-
         ReportUtil.log("header:" + header);
         ReportUtil.log("method:" + method);
         ReportUtil.log("url:" + url);
@@ -261,7 +264,7 @@ public class ApiTest extends TestBase {
                 System.err.println("hearder not is null");
                 //postMethod.setHeader("Content-Type", "application/json");
                 for (Map.Entry<String, String> entry : header.entrySet()) {
-                    System.err.println("header type---------:" + entry.getKey() + ":" + entry.getValue());
+                    //遍历header值
                     postMethod.addHeader(entry.getKey(), entry.getValue());
                 }
             }
@@ -373,19 +376,36 @@ public class ApiTest extends TestBase {
         }
     }
 
+    //@AfterTest
+    public void testc() {
+        String bodyString = "====测试内容==";
+        //测试报告展现 请求报文
+        respondBody("111");
+
+    }
+
+    //@Step
+    public void requestBody(String URL, String Body) {
+        //报告展现请求报文
+    }
+
+    @Step("测试返回结果")
+    public void respondBody(String Respond) {
+        //报告展现响应报文
+    }
 
     //通知钉钉消息
-    @AfterClass
+    //@AfterClass
     public void result_notification() throws Exception {
         HttpClient httpclient = HttpClients.createDefault();
 
-        System.err.println("+============>>>>>>"+webhook_Token);
+        System.err.println("+============>>>>>>" + webhook_Token);
         HttpPost httppost = new HttpPost(webhook_Token);
         httppost.addHeader("Content-Type", "application/json; charset=utf-8");
 
 
         String textMsg = "{ \"msgtype\": \"text\", \"text\": {\"content\": \"我就是我, 是不一样的烟火\"}}";
-        String textMsg2 = "{\"msgtype\": \"link\",\"link\": {\"text\":\"运营商管理后台API接口用例\",\"title\": \"API自动化测试结果\",\"picUrl\": \"\",\"messageUrl\": \""+messageUrl+"\"}}";
+        String textMsg2 = "{\"msgtype\": \"link\",\"link\": {\"text\":\"运营商管理后台API接口用例\",\"title\": \"API自动化测试结果\",\"picUrl\": \"\",\"messageUrl\": \"" + messageUrl + "\"}}";
         StringEntity se = new StringEntity(textMsg2, "utf-8");
         httppost.setEntity(se);
 

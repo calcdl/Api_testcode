@@ -12,9 +12,29 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<envName>api-config.xml</envName>
 		<xmlFileName>testng.xml</xmlFileName>
+		<aspectj.version>1.8.10</aspectj.version>
 	</properties>
 	<build>
 		<plugins>
+			<!--=======Allure新增报告字段=========-->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>2.20</version>
+				<configuration>
+					<argLine>
+						    -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
+					</argLine>
+				</configuration>
+				<dependencies>
+					<dependency>
+						<groupId>org.aspectj</groupId>
+						<artifactId>aspectjweaver</artifactId>
+						<version>${aspectj.version}</version>
+					</dependency>
+				</dependencies>
+			</plugin>
+			<!--================-->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-plugin</artifactId>
@@ -161,18 +181,11 @@
 		</dependency>
 
 		<dependency>
+			<!--allure结果报告包-->
 			<groupId>io.qameta.allure</groupId>
 			<artifactId>allure-testng</artifactId>
 			<version>2.0-BETA18</version>
 		</dependency>
-
-		<!-- https://mvnrepository.com/artifact/org.aspectj/aspectjweaver -->
-		<dependency>
-			<groupId>org.aspectj</groupId>
-			<artifactId>aspectjweaver</artifactId>
-			<version>1.8.10</version>
-		</dependency>
-
 
 	</dependencies>
 </project>

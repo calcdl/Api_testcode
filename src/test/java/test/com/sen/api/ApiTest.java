@@ -384,12 +384,12 @@ public class ApiTest extends TestBase {
 
     }
 
-    //@Step
+    //@Step("请求参数打印")
     public void requestBody(String URL, String Body) {
         //报告展现请求报文
     }
 
-    @Step("测试返回结果")
+    @Step("测试返回结果打印")
     public void respondBody(String Respond) {
         //报告展现响应报文
     }

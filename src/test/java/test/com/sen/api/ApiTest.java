@@ -395,7 +395,7 @@ public class ApiTest extends TestBase {
     }
 
     //通知钉钉消息
-    //@AfterClass
+//    @AfterClass
     public void result_notification() throws Exception {
         HttpClient httpclient = HttpClients.createDefault();
 
